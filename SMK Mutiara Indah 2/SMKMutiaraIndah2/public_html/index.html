@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMK Mutiara Indah 2 - Unggul, Berkarakter & Siap Kerja</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Memanggil CSS Eksternal -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#1E3A8A',
+                            accent: '#2563EB',
+                            amber: '#F59E0B',
+                            dark: '#0F172A',
+                            light: '#F8FAFC'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans bg-brand-light text-slate-800 antialiased flex flex-col min-h-screen">
+
+    <!-- TOP BAR INFO -->
+    <div class="bg-brand-dark text-slate-300 text-xs py-2 px-4 border-b border-slate-800 hidden sm:block">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-6">
+                <span><i class="fas fa-envelope text-brand-amber mr-2"></i>info@smkmutiaraindah2.sch.id</span>
+                <span><i class="fas fa-phone text-brand-amber mr-2"></i>+62 857-7920-0954</span>
+                <span><i class="fas fa-clock text-brand-amber mr-2"></i>Senin - Jumat: 07.00 - 16.00 WIB</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="#" class="hover:text-brand-amber transition"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="hover:text-brand-amber transition"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="hover:text-brand-amber transition"><i class="fab fa-youtube"></i></a>
+                <a href="#" class="hover:text-brand-amber transition"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-md border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="#" class="flex items-center space-x-3 group">
+                    <div class="w-12 h-12 bg-brand-blue rounded-xl flex items-center justify-center text-white text-xl font-bold font-heading shadow-md group-hover:scale-105 transition transform">
+                        <i class="fas fa-graduation-cap text-brand-amber text-2xl"></i>
+                    </div>
+                    <div>
+                        <span class="block text-lg font-extrabold font-heading text-brand-blue tracking-tight leading-none">SMK MUTIARA INDAH 2</span>
+                        <span class="text-xs text-slate-500 font-medium tracking-wide">Learn, Grow and Shine Together.</span>
+                    </div>
+                </a>
+
+                <nav class="hidden md:flex items-center space-x-1 lg:space-x-2 font-medium text-slate-700 text-sm">
+                    <a href="#beranda" class="px-3 py-2 rounded-lg hover:text-brand-blue hover:bg-slate-50 transition">Beranda</a>
+                    <a href="#profil" class="px-3 py-2 rounded-lg hover:text-brand-blue hover:bg-slate-50 transition">Profil</a>
+                    <a href="#jurusan" class="px-3 py-2 rounded-lg hover:text-brand-blue hover:bg-slate-50 transition">Jurusan</a>
+                    <a href="#fasilitas" class="px-3 py-2 rounded-lg hover:text-brand-blue hover:bg-slate-50 transition">Fasilitas</a>
+                    <a href="#berita" class="px-3 py-2 rounded-lg hover:text-brand-blue hover:bg-slate-50 transition">Berita</a>
+                    <a href="#kontak" class="px-3 py-2 rounded-lg hover:text-brand-blue hover:bg-slate-50 transition">Kontak</a>
+                    
+                    <button onclick="toggleModal('netbeans-modal')" class="text-slate-500 hover:text-brand-blue px-2 py-2" title="Panduan NetBeans">
+                        <i class="fas fa-info-circle text-lg"></i>
+                    </button>
+                    
+                    <a href="#ppdb" onclick="openPpdbModal()" class="ml-2 bg-brand-amber hover:bg-amber-600 text-slate-900 font-semibold px-5 py-2.5 rounded-lg shadow-sm transition transform hover:-translate-y-0.5 flex items-center gap-2">
+                        <i class="fas fa-user-plus"></i>
+                        <span>PPDB Online</span>
+                    </a>
+                </nav>
+
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-700 hover:text-brand-blue p-2 rounded-lg focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 space-y-2">
+            <a href="#beranda" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-slate-100">Beranda</a>
+            <a href="#profil" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-slate-100">Profil</a>
+            <a href="#jurusan" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-slate-100">Jurusan</a>
+            <a href="#fasilitas" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-slate-100">Fasilitas</a>
+            <a href="#berita" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-slate-100">Berita</a>
+            <a href="#kontak" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-slate-100">Kontak</a>
+            <button onclick="toggleModal('netbeans-modal')" class="w-full text-left px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-slate-100">
+                <i class="fas fa-code text-brand-blue mr-2"></i>Petunjuk NetBeans Project
+            </button>
+            <a href="#ppdb" onclick="openPpdbModal()" class="block w-full text-center bg-brand-amber hover:bg-amber-600 text-slate-900 font-bold px-4 py-2.5 rounded-lg mt-4 shadow">
+                PPDB Online
+            </a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="beranda" class="relative bg-slate-900 text-white min-h-[88vh] flex items-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=1920" alt="Siswa SMK Mutiara Indah 2" class="w-full h-full object-cover object-center opacity-30">
+            <div class="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/90 to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
+            <div class="max-w-2xl space-y-6">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-blue/60 border border-blue-400/30 text-brand-amber text-xs sm:text-sm font-semibold uppercase tracking-wider backdrop-blur-sm">
+                    <i class="fas fa-star text-xs"></i>
+                    <span>Sekolah Menengah Kejuruan Terakreditasi A</span>
+                </div>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-heading leading-tight tracking-tight text-white">
+                    Learn, Grow <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-brand-amber">and Shine Together</span>
+                </h1>
+                <p class="text-slate-300 text-base sm:text-lg leading-relaxed font-normal">
+                    SMK Mutiara Indah 2 membekali peserta didik dengan keahlian praktis, sertifikasi industri dan karakter kebangsaan yang siap bersaing di dunia kerja maupun kewirausahaan global.
+                </p>
+                <div class="pt-4 flex flex-col sm:flex-row gap-4">
+                    <a href="#ppdb" onclick="openPpdbModal()" class="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-brand-amber hover:bg-amber-500 text-slate-950 font-bold text-base shadow-lg shadow-amber-500/20 transition transform hover:-translate-y-1">
+                        <span>Daftar PPDB 2025/2026</span>
+                        <i class="fas fa-arrow-right ml-3"></i>
+                    </a>
+                    <a href="#jurusan" class="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/20 font-semibold text-base backdrop-blur-sm transition">
+                        Eksplorasi Jurusan
+                    </a>
+                </div>
+
+                <div class="pt-10 grid grid-cols-3 gap-4 border-t border-slate-800 mt-8">
+                    <div>
+                        <p class="text-2xl sm:text-3xl font-extrabold text-white font-heading">90%</p>
+                        <p class="text-xs sm:text-sm text-slate-400">Terserap Industri</p>
+                    </div>
+                    <div>
+                        <p class="text-2xl sm:text-3xl font-extrabold text-brand-amber font-heading">3</p>
+                        <p class="text-xs sm:text-sm text-slate-400">Program Keahlian</p>
+                    </div>
+                    <div>
+                        <p class="text-2xl sm:text-3xl font-extrabold text-white font-heading">30+</p>
+                        <p class="text-xs sm:text-sm text-slate-400">Mitra Perusahaan</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROFIL SEKOLAH -->
+    <section id="profil" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-5 relative">
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl z-10 border-4 border-white">
+                        <img src="images/kepala sekolah.jpg" alt="Kepala Sekolah SMK Mutiara Indah 2" class="w-full h-[450px] object-cover">
+                        <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/40 to-transparent p-6 text-white">
+                            <h3 class="text-xl font-bold font-heading">Prof. Dr. Ing. Ir. H. Bacharuddin Jusuf Habibie, FREng</h3>
+                            <p class="text-brand-amber text-sm font-medium">Kepala Sekolah SMK Mutiara Indah 2</p>
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-brand-amber/20 rounded-full blur-2xl z-0"></div>
+                    <div class="absolute -top-6 -left-6 w-32 h-32 bg-brand-blue/20 rounded-full blur-2xl z-0"></div>
+                </div>
+
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-block px-3 py-1 rounded-full bg-blue-50 text-brand-blue font-bold text-xs uppercase tracking-wider">
+                        Tentang Kami
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold font-heading text-slate-900 leading-tight">
+                        Menciptakan Lulusan Unggul yang Siap Menghadapi Tantangan Era Digital
+                    </h2>
+                    <p class="text-slate-600 leading-relaxed">
+                        Selamat datang di SMK Mutiara Indah 2. Kami berkomitmen menyelenggarakan pendidikan kejuruan modern berbasis teknologi terkini dan berpijak pada nilai-nilai akhlak mulia. Didukung kurikulum berstandar industri serta kemitraan strategis dengan dunia kerja, kami mencetak lulusan yang tak hanya terampil secara teknis, tetapi juga adaptif dan berdaya saing global.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+    <!-- Kartu Visi Sekolah (Bisa Diklik) -->
+    <div onclick="openVisiMisiModal('visi')" class="p-4 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-between cursor-pointer hover:border-brand-blue hover:bg-blue-50/50 transition group">
+        <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-lg bg-blue-100 text-brand-blue flex items-center justify-center flex-shrink-0 font-bold group-hover:bg-brand-blue group-hover:text-white transition">
+                <i class="fas fa-bullseye"></i>
+            </div>
+            <div>
+                <h4 class="font-bold text-slate-900 font-heading">Visi Sekolah</h4>
+                <p class="text-xs text-slate-500">Klik untuk melihat detail Visi</p>
+            </div>
+        </div>
+        <i class="fas fa-chevron-right text-slate-400 group-hover:text-brand-blue group-hover:translate-x-1 transition transform"></i>
+    </div>
+
+    <!-- Kartu Misi Sekolah (Bisa Diklik) -->
+    <div onclick="openVisiMisiModal('misi')" class="p-4 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-between cursor-pointer hover:border-emerald-500 hover:bg-emerald-50/50 transition group">
+        <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center flex-shrink-0 font-bold group-hover:bg-emerald-600 group-hover:text-white transition">
+                <i class="fas fa-tasks"></i>
+            </div>
+            <div>
+                <h4 class="font-bold text-slate-900 font-heading">Misi Sekolah</h4>
+                <p class="text-xs text-slate-500">Klik untuk melihat detail Misi</p>
+            </div>
+        </div>
+        <i class="fas fa-chevron-right text-slate-400 group-hover:text-emerald-600 group-hover:translate-x-1 transition transform"></i>
+    </div>
+</div>
+
+        <!-- Modal Pop-up Visi & Misi -->
+            <div id="visimisi-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+                     <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl relative animate-fade-in">
+                     <button onclick="toggleModal('visimisi-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-xl font-bold">&times;</button>
+                  <div id="modal-visimisi-content"></div>
+             </div>
+        </div>
+
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- PROGRAM KEAHLIAN / JURUSAN -->
+    <section id="jurusan" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
+                <span class="px-3 py-1 rounded-full bg-blue-100 text-brand-blue font-bold text-xs uppercase tracking-wider">Program Keahlian</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold font-heading text-slate-900">Pilihan Jurusan Unggulan</h2>
+                <p class="text-slate-600">Pilihlah minat keahlian yang sesuai dengan potensi dan cita-citamu untuk karier masa depan yang cemerlang.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- RPL -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition transform hover:-translate-y-1 border border-slate-100 flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=600" alt="RPL" class="w-full h-full object-cover">
+                            <div class="absolute top-4 right-4 bg-brand-blue text-white text-xs font-bold px-3 py-1 rounded-full shadow">Favorit</div>
+                        </div>
+                        <div class="p-6">
+                            <div class="w-12 h-12 bg-blue-50 text-brand-blue rounded-xl flex items-center justify-center text-xl font-bold mb-4">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <h3 class="text-xl font-bold font-heading text-slate-900 mb-2">Rekayasa Perangkat Lunak (RPL)</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-4">Mempelajari pemrograman web, aplikasi mobile, manajemen basis data, dan pengembangan perangkat lunak modern.</p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0">
+                        <button onclick="showJurusanDetail('RPL', 'Rekayasa Perangkat Lunak', 'Mempelajari bahasa pemrograman modern seperti JavaScript, Java, PHP, serta kerangka kerja web dan mobile.', ['Web Dev', 'Mobile Apps', 'Database', 'UI/UX'])" class="w-full py-2.5 rounded-lg border border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white font-semibold text-sm transition text-center">
+                            Detail Jurusan
+                        </button>
+                    </div>
+                </div>
+
+                <!-- TKJ -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition transform hover:-translate-y-1 border border-slate-100 flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&q=80&w=600" alt="TKJ" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center text-xl font-bold mb-4">
+                                <i class="fas fa-network-wired"></i>
+                            </div>
+                            <h3 class="text-xl font-bold font-heading text-slate-900 mb-2">Teknik Komputer & Jaringan (TKJ)</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-4">Mempelajari instalasi jaringan komputer, administrasi server, keamanan siber, dan infrastruktur Cloud.</p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0">
+                        <button onclick="showJurusanDetail('TKJ', 'Teknik Komputer & Jaringan', 'Fokus pada infrastruktur jaringan, konfigurasi Mikrotik/Cisco, administrasi Server Linux/Windows.', ['Network Admin', 'Mikrotik/Cisco', 'Server Mgmt', 'Cyber Security'])" class="w-full py-2.5 rounded-lg border border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white font-semibold text-sm transition text-center">
+                            Detail Jurusan
+                        </button>
+                    </div>
+                </div>
+
+                <!-- AKL -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition transform hover:-translate-y-1 border border-slate-100 flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=600" alt="AKL" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <div class="w-12 h-12 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center text-xl font-bold mb-4">
+                                <i class="fas fa-calculator"></i>
+                            </div>
+                            <h3 class="text-xl font-bold font-heading text-slate-900 mb-2">Akuntansi & Keuangan Lembaga</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-4">Pembukuan keuangan, perpajakan, pencatatan akuntansi berbasis aplikasi Komputer Akuntansi.</p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0">
+                        <button onclick="showJurusanDetail('AKL', 'Akuntansi & Keuangan Lembaga', 'Mencetak tenaga ahli akuntansi yang terampil mengoperasikan perangkat lunak akuntansi.', ['Komputer Akuntansi', 'Perpajakan', 'Laporan Keuangan', 'Fintech'])" class="w-full py-2.5 rounded-lg border border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white font-semibold text-sm transition text-center">
+                            Detail Jurusan
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <!-- SARANA & PRASARANA / FASILITAS -->
+<section id="fasilitas" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+            <div>
+                <span class="px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-bold uppercase tracking-wider">Sarana & Prasarana</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold font-heading text-slate-900 mt-3">Fasilitas Modern</h2>
+            </div>
+            <p class="text-slate-600 max-w-md text-sm mt-3 md:mt-0">
+                Fasilitas belajar pendukung lengkap untuk menunjang kegiatan akademis, praktik, dan kenyamanan siswa.
+            </p>
+        </div>
+
+        <!-- Grid Kartu Fasilitas (8 Kartu: 4 Kolom x 2 Baris) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            <!-- 1. Ruang Kelas -->
+            <div class="bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-md transition">
+                <div class="h-40 overflow-hidden">
+                    <img src="images/ruang-kelas.jpeg" class="w-full h-full object-cover hover:scale-105 transition duration-300" onerror="this.src='https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&q=80&w=600'">
+                </div>
+                <div class="p-5">
+                    <div class="w-10 h-10 rounded-xl bg-blue-100 text-brand-blue flex items-center justify-center text-lg mb-3">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-900 text-base mb-1">Ruang Kelas</h3>
+                    <p class="text-slate-600 text-xs leading-relaxed">Ruang belajar nyaman dilengkapi AC, Proyektor dan jaringan Wi-Fi interaktif.</p>
+                </div>
+            </div>
+
+            <!-- 2. Lab Komputer -->
+            <div class="bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-md transition">
+                <div class="h-40 overflow-hidden">
+                    <img src="images/lab-komputer.jpeg" class="w-full h-full object-cover hover:scale-105 transition duration-300" onerror="this.src='https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=600'">
+                </div>
+                <div class="p-5">
+                    <div class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center text-lg mb-3">
+                        <i class="fas fa-desktop"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-900 text-base mb-1">Lab Komputer</h3>
+                    <p class="text-slate-600 text-xs leading-relaxed">Komputer spesifikasi tinggi dengan pendingin ruangan & koneksi internet fiber optik cepat.</p>
+                </div>
+            </div>
+
+            <!-- 3. Perpustakaan -->
+            <div class="bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-md transition">
+                <div class="h-40 overflow-hidden">
+                    <img src="images/perpustakaan.jpeg" class="w-full h-full object-cover hover:scale-105 transition duration-300" onerror="this.src='https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&q=80&w=600'">
+                </div>
+                <div class="p-5">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-lg mb-3">
+                        <i class="fas fa-book-reader"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-900 text-base mb-1">Perpustakaan</h3>
+                    <p class="text-slate-600 text-xs leading-relaxed">Koleksi buku fisik dan e-book interaktif yang lengkap untuk menambah wawasan siswa.</p>
+                </div>
+            </div>
+
+            <!-- 4. Lapangan Outdoor -->
+            <div class="bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-md transition">
+                <div class="h-40 overflow-hidden">
+                    <img src="images/lapangan-outdoor.jpeg" class="w-full h-full object-cover hover:scale-105 transition duration-300" onerror="this.src='https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&q=80&w=600'">
+                </div>
+                <div class="p-5">
+                    <div class="w-10 h-10 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center text-lg mb-3">
+                        <i class="fas fa-volleyball-ball"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-900 text-base mb-1">Lapangan Outdoor</h3>
+                    <p class="text-slate-600 text-xs leading-relaxed">Lapangan olahraga terbuka serbaguna untuk basket, voli, dan upacara bendera.</p>
+                </div>
+            </div>
+
+            <!-- 5. Lapangan Indoor -->
+            <div class="bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-md transition">
+                <div class="h-40 overflow-hidden">
+                    <img src="images/lapangan-indoor.jpeg" class="w-full h-full object-cover hover:scale-105 transition duration-300" onerror="this.src='https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&q=80&w=600'">
+                </div>
+                <div class="p-5">
+                    <div class="w-10 h-10 rounded-xl bg-teal-100 text-teal-700 flex items-center justify-center text-lg mb-3">
+                        <i class="fas fa-running"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-900 text-base mb-1">Lapangan Indoor</h3>
+                    <p class="text-slate-600 text-xs leading-relaxed">Gedung olahraga tertutup yang nyaman untuk badminton, futsal, dan kegiatan pentas seni.</p>
+                </div>
+            </div>
+
+            <!-- 6. Kantin -->
+            <div class="bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-md transition">
+                <div class="h-40 overflow-hidden">
+                    <img src="images/kantin.jpeg" class="w-full h-full object-cover hover:scale-105 transition duration-300" onerror="this.src='https://images.unsplash.com/photo-1567521464027-f127ff144326?auto=format&fit=crop&q=80&w=600'">
+                </div>
+                <div class="p-5">
+                    <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center text-lg mb-3">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-900 text-base mb-1">Kantin</h3>
+                    <p class="text-slate-600 text-xs leading-relaxed">Menyediakan aneka makanan dan minuman higienis, sehat, dan terjangkau untuk siswa.</p>
+                </div>
+            </div>
+
+            <!-- 7. Area Parkir -->
+            <div class="bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-md transition">
+                <div class="h-40 overflow-hidden">
+                    <img src="images/area-parkir.jpeg" class="w-full h-full object-cover hover:scale-105 transition duration-300" onerror="this.src='https://images.unsplash.com/photo-1506521781263-d8422e82f27a?auto=format&fit=crop&q=80&w=600'">
+                </div>
+                <div class="p-5">
+                    <div class="w-10 h-10 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center text-lg mb-3">
+                        <i class="fas fa-parking"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-900 text-base mb-1">Area Parkir</h3>
+                    <p class="text-slate-600 text-xs leading-relaxed">Parkiran kendaraan siswa dan guru yang aman, tertata rapi, dan terpantau kamera CCTV.</p>
+                </div>
+            </div>
+
+            <!-- 8. Aula -->
+            <div class="bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-md transition">
+                <div class="h-40 overflow-hidden">
+                    <img src="images/aula.jpeg" class="w-full h-full object-cover hover:scale-105 transition duration-300" onerror="this.src='https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=600'">
+                </div>
+                <div class="p-5">
+                    <div class="w-10 h-10 rounded-xl bg-sky-100 text-sky-700 flex items-center justify-center text-lg mb-3">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-900 text-base mb-1">Aula Multifungsi</h3>
+                    <p class="text-slate-600 text-xs leading-relaxed">Gedung pertemuan ber-AC untuk kegiatan seminar, rapat wali murid dan acara sekolah.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+    <!-- BERITA -->
+    <section id="berita" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="px-3 py-1 rounded-full bg-blue-100 text-brand-blue font-bold text-xs uppercase tracking-wider">Kabar Terbaru</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold font-heading text-slate-900 mt-2">Berita & Kegiatan</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <article class="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 flex flex-col">
+                    <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=600" alt="Berita 1" class="h-48 w-full object-cover">
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="text-xs text-brand-blue font-semibold mb-2">15 Mei 2025 • Kegiatan</div>
+                            <h3 class="font-bold font-heading text-lg text-slate-900 mb-2">Ujian Sertifikasi Kompetensi Siswa RPL & TKJ</h3>
+                            <p class="text-slate-600 text-sm line-clamp-3">Siswa kelas XII mengikuti uji kompetensi bekerja sama dengan LSP dan mitra industri.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 flex flex-col">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=600" alt="Berita 2" class="h-48 w-full object-cover">
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="text-xs text-brand-blue font-semibold mb-2">10 Mei 2025 • Prestasi</div>
+                            <h3 class="font-bold font-heading text-lg text-slate-900 mb-2">Juara 1 LKS Tingkat Provinsi</h3>
+                            <p class="text-slate-600 text-sm line-clamp-3">Siswa SMK Mutiara Indah 2 merengkuh prestasi pada ajang Lomba Kompetensi Siswa.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 flex flex-col">
+                    <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&q=80&w=600" alt="Berita 3" class="h-48 w-full object-cover">
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="text-xs text-brand-blue font-semibold mb-2">01 Mei 2025 • Info</div>
+                            <h3 class="font-bold font-heading text-lg text-slate-900 mb-2">Pembukaan PPDB Gelombang 1</h3>
+                            <p class="text-slate-600 text-sm line-clamp-3">Dapatkan potongan pendaftaran awal bagi calon pendaftar di Gelombang 1.</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- KONTAK -->
+    <section id="kontak" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200">
+                    <h3 class="text-2xl font-bold font-heading text-slate-900 mb-2">Hubungi Kami</h3>
+                    <form id="contactForm" onsubmit="handleContactSubmit(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Nama Lengkap</label>
+                            <input type="text" required class="w-full px-4 py-3 rounded-lg border border-slate-300 text-sm outline-none" placeholder="Masukkan nama kamu">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Email / WhatsApp</label>
+                            <input type="text" required class="w-full px-4 py-3 rounded-lg border border-slate-300 text-sm outline-none" placeholder="081234567890 / email@domain.com">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Pesan</label>
+                            <textarea rows="4" required class="w-full px-4 py-3 rounded-lg border border-slate-300 text-sm outline-none" placeholder="Tuliskan pertanyaanmu..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-brand-blue hover:bg-blue-900 text-white font-bold py-3.5 rounded-lg shadow-md transition">Kirim Pesan</button>
+                    </form>
+                </div>
+
+                <div class="flex flex-col justify-between space-y-6">
+                    <div>
+                        <h3 class="text-2xl font-bold font-heading text-slate-900 mb-4">Lokasi Sekolah</h3>
+                        <div class="space-y-4 text-slate-600 text-sm">
+                            <div class="flex items-start space-x-3"><i class="fas fa-map-marker-alt text-brand-amber text-lg mt-1"></i><span>Jl. Seroja Indah No. 88, Jakarta Selatan.</span></div>
+                            <div class="flex items-center space-x-3"><i class="fas fa-phone text-brand-amber text-lg"></i><span> +62 857-7920-0954</span></div>
+                            <div class="flex items-center space-x-3"><i class="fas fa-envelope text-brand-amber text-lg"></i><span>info@smkmutiaraindah2.sch.id</span></div>
+                        </div>
+                    </div>
+                    <div class="w-full h-64 bg-slate-200 rounded-2xl overflow-hidden relative border border-slate-300">
+                        <iframe title="Google Maps" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126920.24086208077!2d106.759478!3d-6.2297465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e945e34b9d%3A0x5371bf0fdad786a2!2sJakarta%20South!5e0!3m2!1sen!2sid!4v1680000000000!5m2!1sen!2sid" class="w-full h-full border-0" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-dark text-slate-300 pt-12 pb-8 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-slate-500">
+            <p>&copy; 2025 SMK Mutiara Indah 2. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- MODAL DETAIL JURUSAN -->
+    <div id="jurusan-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl relative animate-fade-in">
+            <button onclick="toggleModal('jurusan-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-xl font-bold">&times;</button>
+            <div id="modal-jurusan-content"></div>
+        </div>
+    </div>
+
+    <!-- MODAL PPDB ONLINE -->
+    <div id="ppdb-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl relative">
+            <button onclick="toggleModal('ppdb-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-xl font-bold">&times;</button>
+            <h3 class="text-xl font-bold font-heading text-slate-900 mb-1">Formulir Pendaftaran PPDB</h3>
+            <p class="text-xs text-slate-500 mb-4">Tahun Ajaran 2025/2026 - SMK Mutiara Indah 2</p>
+            <form onsubmit="handlePpdbSubmit(event)" class="space-y-3">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Nama Lengkap</label>
+                    <input type="text" required class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Asal Sekolah</label>
+                    <input type="text" required class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Nomor WhatsApp</label>
+                    <input type="tel" required class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Pilihan Jurusan</label>
+                    <select required class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm outline-none">
+                        <option value="">-- Pilih Jurusan --</option>
+                        <option value="RPL">Rekayasa Perangkat Lunak (RPL)</option>
+                        <option value="TKJ">Teknik Komputer & Jaringan (TKJ)</option>
+                        <option value="AKL">Akuntansi & Keuangan Lembaga (AKL)</option>
+                    </select>
+                </div>
+                <button type="submit" class="w-full bg-brand-amber hover:bg-amber-600 text-slate-900 font-bold py-2.5 rounded-lg text-sm mt-4 shadow">Kirim Pendaftaran</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL PANDUAN NETBEANS -->
+    <div id="netbeans-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl relative">
+            <button onclick="toggleModal('netbeans-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-xl font-bold">&times;</button>
+            <h3 class="font-bold text-slate-900 font-heading mb-2">Petunjuk Struktur Folder</h3>
+            <p class="text-xs text-slate-600 mb-4">Pastikan file <code>style.css</code> ada di folder <code>css/</code> dan file <code>script.js</code> ada di folder <code>js/</code>.</p>
+            <button onclick="toggleModal('netbeans-modal')" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold py-2 rounded-lg text-xs">Tutup</button>
+        </div>
+    </div>
+
+    <!-- Memanggil JavaScript Eksternal -->
+    <script src="js/script.js"></script>
+</body>
+</html>
